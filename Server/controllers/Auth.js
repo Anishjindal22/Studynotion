@@ -247,15 +247,12 @@ exports.changePassword = async (req, res) => {
     // 	});
     // }
 
-    // Update password
     const encryptedPassword = await bcrypt.hash(newPassword, 10);
     const updatedUserDetails = await User.findByIdAndUpdate(
       req.user.id,
       { password: encryptedPassword },
       { new: true }
     );
-
-    // Send notification email
     try {
       const emailResponse = await mailSender(
         updatedUserDetails.email,
@@ -274,13 +271,10 @@ exports.changePassword = async (req, res) => {
         error: error.message,
       });
     }
-
-    // Return success response
     return res
       .status(200)
       .json({ success: true, message: "Password updated successfully" });
   } catch (error) {
-    // If there's an error updating the password, log the error and return a 500 (Internal Server Error) error
     console.error("Error occurred while updating password:", error);
     return res.status(500).json({
       success: false,
