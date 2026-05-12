@@ -7,7 +7,7 @@ const database = require("./config/database");
 const { connectRedis } = require("./config/redis");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const {cloudinaryConnect } = require("./config/cloudinary");
+const { cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dns = require("dns");
 
@@ -47,9 +47,10 @@ const allowedOrigins = [
 	"http://127.0.0.1:3000",
 	"http://localhost:5173",
 	"http://127.0.0.1:5173",
+	"https://tutor-master-five.vercel.app"
 ].filter(Boolean);
 
-database.connectDB(); 
+database.connectDB();
 app.use(express.json());
 app.use(cookieParser());
 app.use(
@@ -76,8 +77,8 @@ app.use(
 
 app.use(
 	fileUpload({
-		useTempFiles:true,
-		tempFileDir:"/tmp",
+		useTempFiles: true,
+		tempFileDir: "/tmp",
 	})
 )
 cloudinaryConnect();
@@ -123,8 +124,8 @@ async function bootstrapRoutes() {
 
 	app.get("/", (req, res) => {
 		return res.json({
-			success:true,
-			message:'Your server is up and running....'
+			success: true,
+			message: 'Your server is up and running....'
 		});
 	});
 
