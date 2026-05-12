@@ -5,7 +5,6 @@ exports.connectDB = () => {
     const mongoUrl = process.env.MONGODB_URL
 
     if (!mongoUrl) {
-        console.error("DB Connection Failed")
         console.error("MONGODB_URL is missing in environment configuration")
         process.exit(1)
     }
@@ -14,11 +13,10 @@ exports.connectDB = () => {
         useNewUrlParser: true
     })
     .then(()=>{
-        console.log("DB connection successfull!")
+        console.log("DB connection success")
     })
     .catch( (error) => {
-        console.log("DB Connection Failed");
-        console.error(error);
+        console.error("DB connection failed:", error.message);
         process.exit(1);
     } )
 }

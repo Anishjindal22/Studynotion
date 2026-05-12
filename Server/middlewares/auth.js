@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken")
 
+
 function extractTokenFromHeader(authorizationHeader) {
     if (!authorizationHeader || typeof authorizationHeader !== "string") {
         return null;
@@ -47,7 +48,7 @@ exports.auth = async (req,res, next) => {
         } 
         next();
     } catch (error) {
-        console.log(error)
+        console.error("Token validation failed:", error.message);
         return res.status(401).json({
             success:false,
             message:"Error in validating token"

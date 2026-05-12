@@ -69,7 +69,7 @@ export const buyCourse = async (token, courses, userDetails, navigate, dispatch,
             currency: orderResponse.data.message.currency,
             amount: `${orderResponse.data.message.amount}`,
             order_id:orderResponse.data.message.id,
-            name:"SNotion",
+            name:"Tutor Master",
             description: "Thank You for Purchasing the Course",
             image:rzpLogo,
             prefill: {

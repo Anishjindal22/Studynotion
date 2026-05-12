@@ -108,8 +108,8 @@ const Navbar = () => {
         
         {/* Logo */}
         <Link to="/" className="group flex items-center gap-3">
-          <span className="h-8 w-8 rounded-full border border-text-main text-text-main grid place-items-center font-semibold text-sm">SN</span>
-          <span className="text-xl font-semibold tracking-tight text-white">SNotion</span>
+          <span className="h-8 w-8 rounded-full border border-text-main text-text-main grid place-items-center font-semibold text-sm">TM</span>
+          <span className="text-xl font-semibold tracking-tight text-white">Tutor Master</span>
         </Link>
 
         {/* Nav Links */}

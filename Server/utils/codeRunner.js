@@ -41,6 +41,15 @@ async function judge0Request(path, method, body) {
     body: body ? JSON.stringify(body) : undefined,
   });
 
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("application/json")) {
+    const text = await response.text();
+    throw new Error(
+      `Code execution service returned non-JSON response (status ${response.status}). ` +
+      `This usually means the Judge0 API is unreachable or misconfigured.`
+    );
+  }
+
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data?.message || "Code execution service error");

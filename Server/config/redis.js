@@ -32,7 +32,7 @@ async function connectRedis() {
 
   const redisUrlRaw = process.env.REDIS_URL;
   if (!redisUrlRaw) {
-    console.log("Redis not configured ,using MongoDb");
+    console.warn("Redis not configured, using MongoDB fallback");
     return null;
   }
 
@@ -59,7 +59,9 @@ async function connectRedis() {
         },
       });
 
-      redisClient.on("error", (err) => console.error("Redis error:", err?.message || err));
+      redisClient.on("error", (err) => {
+        console.error("Redis runtime error:", err?.message || err);
+      });
 
       await redisClient.connect();
       console.log("Redis connected successfully");
@@ -91,9 +93,13 @@ async function cacheGet(key) {
   if (!redisClient || !redisClient.isReady) return null;
   try {
     const data = await redisClient.get(key);
-    return data ? JSON.parse(data) : null;
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return null;
+    }
   } catch (error) {
-    console.error("Redis GET error:", error.message);
+    console.error("Redis get error:", error.message, "key:", key);
     return null;
   }
 }
@@ -103,7 +109,7 @@ async function cacheSet(key, data, ttlSeconds = 900) {
   try {
     await redisClient.setEx(key, ttlSeconds, JSON.stringify(data));
   } catch (error) {
-    console.error("Redis SET error:", error.message);
+    console.error("Redis set error:", error.message, "key:", key);
   }
 }
 
@@ -115,7 +121,7 @@ async function cacheDelete(pattern) {
       await redisClient.del(keys);
     }
   } catch (error) {
-    console.error("Redis DELETE error:", error.message);
+    console.error("Redis delete error:", error.message, "pattern:", pattern);
   }
 }
 

@@ -35,7 +35,7 @@ const CodeBlocks = ({
               <div className="bg-surface-light p-3 rounded-xl text-brand-primary">
                   <FaLaptopCode size={24} />
               </div>
-              <h3 className="text-xl font-bold text-white">The SNotion Edge</h3>
+              <h3 className="text-xl font-bold text-white">The Tutor Master Edge</h3>
           </div>
 
           <ul className="space-y-4 text-text-muted">

@@ -28,8 +28,8 @@ const Footer = () => {
           <div className="lg:w-[50%] flex flex-wrap flex-row justify-between lg:border-r lg:border-surface-border pl-3 lg:pr-10 gap-3">
             <div className="w-[30%] flex flex-col gap-3 lg:w-[30%] mb-7 lg:pl-0">
               <div className="flex items-center gap-3 mt-1">
-                <span className="h-8 w-8 rounded-full border border-text-main text-text-main grid place-items-center font-semibold text-sm">SN</span>
-                <span className="text-lg font-semibold tracking-tight text-white">SNotion</span>
+                <span className="h-8 w-8 rounded-full border border-text-main text-text-main grid place-items-center font-semibold text-sm">TM</span>
+                <span className="text-lg font-semibold tracking-tight text-white">Tutor Master</span>
               </div>
               <h1 className="text-white font-semibold text-[16px] mt-4">
                 Company
@@ -156,7 +156,7 @@ const Footer = () => {
           ))}
         </div>
         <div className="mt-4 lg:mt-0">
-          Made with <span className="text-brand-accent">♥</span> © 2026 SNotion
+          Made with <span className="text-brand-accent">♥</span> © 2026 Tutor Master
         </div>
       </div>
     </div>

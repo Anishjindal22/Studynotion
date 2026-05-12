@@ -11,6 +11,7 @@ const {cloudinaryConnect } = require("./config/cloudinary");
 const fileUpload = require("express-fileupload");
 const dns = require("dns");
 
+
 const rawDnsServers = process.env.DNS_SERVERS;
 if (typeof rawDnsServers === "string" && rawDnsServers.trim().length > 0) {
 	const servers = rawDnsServers
@@ -21,10 +22,9 @@ if (typeof rawDnsServers === "string" && rawDnsServers.trim().length > 0) {
 	if (servers.length > 0) {
 		try {
 			dns.setServers(servers);
-			console.log(`DNS override enabled: ${servers.join(", ")}`);
+			console.log("DNS override enabled:", servers);
 		} catch (e) {
-			console.error("Invalid DNS_SERVERS value; expected comma-separated IPs");
-			console.error(e);
+			console.error("Invalid DNS_SERVERS value; expected comma-separated IPs", e.message);
 			process.exit(1);
 		}
 	}
@@ -73,6 +73,7 @@ app.use(
 		credentials: true,
 	})
 )
+
 app.use(
 	fileUpload({
 		useTempFiles:true,
@@ -86,11 +87,11 @@ const basePort = Number(PORT) || 4000;
 function startServer(portToUse) {
 	const server = app
 		.listen(portToUse, () => {
-			console.log(`App is running at ${portToUse}`);
+			console.log(`Server started on port ${portToUse}`);
 		})
 		.on("error", (error) => {
 			if (error.code === "EADDRINUSE") {
-				console.error(`Port ${portToUse} is already in use. Retrying on ${portToUse + 1}...`);
+				console.warn(`Port ${portToUse} in use, trying ${portToUse + 1}`);
 				startServer(portToUse + 1);
 				return;
 			}
@@ -132,6 +133,6 @@ async function bootstrapRoutes() {
 }
 
 bootstrapRoutes().catch((error) => {
-	console.error("Failed to bootstrap routes", error);
+	console.error("Bootstrap routes failed:", error.message);
 	process.exit(1);
 });

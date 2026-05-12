@@ -2,6 +2,7 @@ const rateLimit = require("express-rate-limit");
 const { RedisStore } = require("rate-limit-redis");
 const { getRedisClient } = require("../config/redis");
 
+
 const STORE_LOG_COOLDOWN_MS = 60 * 1000;
 const storeLogState = new Map();
 
@@ -58,9 +59,7 @@ const buildRedisStore = (policyName) => {
 
   if (!redisClient || !redisClient.isReady) {
     if (shouldLogStoreEvent(policyName, "redis-memory-fallback")) {
-      console.warn(
-        `[RateLimiter:${policyName}] Redis unavailable at initialization. Using in-memory store fallback.`
-      );
+      console.warn(`Rate limiter store fallback: ${policyName} - redis unavailable`);
     }
 
     return undefined;
@@ -74,10 +73,7 @@ const buildRedisStore = (policyName) => {
           return await redisClient.sendCommand(args);
         } catch (error) {
           if (shouldLogStoreEvent(policyName, "redis-command-failed")) {
-            console.error(
-              `[RateLimiter:${policyName}] Redis command failed. Failing open for this request.`,
-              error?.message || error
-            );
+            console.error(`Rate limiter Redis command failed: ${policyName}`, error?.message || error);
           }
 
           throw error;
@@ -86,10 +82,7 @@ const buildRedisStore = (policyName) => {
     });
   } catch (error) {
     if (shouldLogStoreEvent(policyName, "redis-memory-fallback")) {
-      console.warn(
-        `[RateLimiter:${policyName}] Redis store initialization failed. Using in-memory store fallback.`,
-        error?.message || error
-      );
+      console.warn(`Rate limiter store init failed, falling back: ${policyName}`, error?.message || error);
     }
 
     return undefined;
@@ -139,12 +132,12 @@ const createRateLimiter = ({
         path: req.originalUrl || req.url,
       };
 
-      console.warn(`[RateLimiter:${policyName}] Rate limit exceeded`, violationEvent);
+      console.warn("Rate limit exceeded:", violationEvent);
 
       try {
         violationHook(violationEvent);
       } catch (error) {
-        console.error(`[RateLimiter:${policyName}] Violation hook failed`, error);
+        console.error(`Rate limiter violation hook failed: ${policyName}`, error.message);
       }
 
       const retryAfterSeconds = buildRetryAfterSeconds(req);

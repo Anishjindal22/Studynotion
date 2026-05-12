@@ -1,6 +1,7 @@
 const { SQSClient } = require("@aws-sdk/client-sqs");
 require("dotenv").config();
 
+
 let sqsClient = null;
 
 try {
@@ -12,12 +13,12 @@ try {
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
       },
     });
-    console.log("SQS Client initialized");
+    console.log("SQS client initialized");
   } else {
-      console.log("AWS credentials not found. SQS Client will not be initialized.");
+      console.warn("SQS client not initialized: missing AWS credentials");
   }
 } catch (error) {
-  console.log("Failed to initialize SQS client", error);
+  console.error("SQS client initialization failed:", error.message);
 }
 
 module.exports = sqsClient;

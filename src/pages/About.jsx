@@ -11,10 +11,10 @@ const About = () => {
       <section className='bg-surface-dim/20 border-b border-surface-border'>
         <div className='mx-auto flex w-11/12 max-w-maxContent flex-col items-center text-center gap-6 py-20 lg:py-32'>
                     <h1 className='text-4xl lg:text-6xl font-extrabold text-white tracking-tight'>
-                        About SNotion
+                        About Tutor Master
                     </h1>
                     <p className='text-lg lg:text-xl text-text-muted leading-relaxed max-w-3xl'>
-                        SNotion was built on a simple premise: the best way to learn software engineering is by actually building software. We provide the structure, the sandbox, and the community to make it happen.
+                        Tutor Master was built on a simple premise: the best way to learn software engineering is by actually building software. We provide the structure, the sandbox, and the community to make it happen.
                     </p>
         </div>
       </section>
@@ -68,7 +68,7 @@ const About = () => {
                 <div className='flex flex-col gap-6'>
                     <span className='text-sm font-bold tracking-widest text-brand-primary uppercase'>Our Mission</span>
                     <h2 className='text-3xl lg:text-4xl font-bold text-white leading-tight'>Build the premier bridge between ambition and employment.</h2>
-                    <p className='text-text-light leading-relaxed text-lg'>Our mission is simple: provide learners with an affordable, interactive, and rigorous platform that exactly mimics the real-world software engineering environment. When you graduate from a SNotion path, you are ready for day one on the job.</p>
+                    <p className='text-text-light leading-relaxed text-lg'>Our mission is simple: provide learners with an affordable, interactive, and rigorous platform that exactly mimics the real-world software engineering environment. When you graduate from a Tutor Master path, you are ready for day one on the job.</p>
                 </div>
             </div>
         </div>

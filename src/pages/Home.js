@@ -65,7 +65,7 @@ const Home = () => {
 
         <div className="lg:w-[45%] relative">
           <div className="relative rounded-2xl overflow-hidden border border-surface-border bg-surface-dim p-8">
-            <h3 className="text-2xl font-semibold text-white mb-4">Why SNotion</h3>
+            <h3 className="text-2xl font-semibold text-white mb-4">Why Tutor Master</h3>
             <ul className="text-text-muted space-y-4 font-inter">
               <li>Structured course paths</li>
               <li>Practical assignments and projects</li>
@@ -118,7 +118,7 @@ const Home = () => {
           Voices from the Community
         </h2>
         <p className="text-center text-text-muted mb-12 max-w-2xl mx-auto">
-          Real feedback from learners growing their careers on SNotion.
+          Real feedback from learners growing their careers on Tutor Master.
         </p>
         <div className="relative">
           <ReviewSlider />

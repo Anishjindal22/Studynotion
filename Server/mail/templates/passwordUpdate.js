@@ -55,8 +55,8 @@ exports.passwordUpdated = (email, name) => {
     
     <body>
         <div class="container">
-            <a href="https://tutor-master.vercel.app"><img class="logo"
-                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="SNotion Logo"></a>
+            <a href="https://Tutor Master.vercel.app"><img class="logo"
+                    src="https://i.ibb.co/7Xyj3PC/logo.png" alt="Tutor Master Logo"></a>
             <div class="message">Password Update Confirmation</div>
             <div class="body">
                 <p>Hey ${name},</p>
@@ -66,7 +66,7 @@ exports.passwordUpdated = (email, name) => {
             </div>
             <div class="support">If you have any questions or need further assistance, please feel free to reach out to us
                 at
-                <a href="mailto:hello@snotion.com">hello@snotion.com</a>. We are here to help!
+                <a href="mailto:hello@Tutor Master.com">hello@Tutor Master.com</a>. We are here to help!
             </div>
         </div>
     </body>

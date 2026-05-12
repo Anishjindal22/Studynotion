@@ -10,7 +10,7 @@ const ContactPage = () => {
         {
             title: "Chat with us",
             desc: "Our friendly team is here to help.",
-            address: "hello@snotion.com",
+            address: "hello@Tutor Master.com",
             icon: BsFillChatRightDotsFill
         },
         {

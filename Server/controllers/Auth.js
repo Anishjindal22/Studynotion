@@ -6,6 +6,7 @@ const Profile = require("../models/Profile");
 const jwt = require("jsonwebtoken");
 const mailSender = require("../utils/mailSender");
 const { passwordUpdated } = require("../mail/templates/passwordUpdate");
+
 require("dotenv").config();
 
 exports.sendOtp = async (req, res) => {
@@ -173,6 +174,7 @@ exports.login = async (req, res) => {
       .populate("additionalDetails")
       .exec();
     if (!existingUser) {
+
       return res.status(400).json({
         success: false,
         message: "Email not registered",
@@ -194,6 +196,8 @@ exports.login = async (req, res) => {
       existingUser.token = token;
       existingUser.password = undefined;
 
+
+
       const options = {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
@@ -208,6 +212,7 @@ exports.login = async (req, res) => {
         existingUser,
       });
     } else {
+
       return res.status(401).json({
         success: false,
         message: "Password is incorrect",
